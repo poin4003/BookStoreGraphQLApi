@@ -27,8 +27,35 @@ const resolvers = {
         view: args.View,
         authorId: args.authorId 
       });
+
       return await book.save();
     },
+
+    updateBook: async (parent, args) => {
+      const updatedBook = await BookModel.findByIdAndUpdate(
+        args.id,
+        {
+          title: args.title,
+          content: args.content,
+          createOn: args.createOn,
+          language: args.language,
+          numberOfPages: args.numberOfPages,
+          numberOfChapters: args.numberOfChapters,
+          numberOfWords: args.numberOfWords,
+          view: args.view,
+          authorId: args.authorId
+        },
+        { new: true }
+      );
+
+      return updatedBook;
+    },
+
+    deleteBook: async (parent, args) => {
+      const deletedBook = await BookModel.findByIdAndDelete(args.id);
+      return deletedBook;
+    },
+
     // Resolver for addAuthor mutation, adding new author and return created author
     addAuthor: async (parent, args) => {
       const author = new AuthorModel({ 
@@ -45,6 +72,31 @@ const resolvers = {
       });
       return await author.save();
     },
+
+    updateAuthor: async (parent, args) => {
+      const updatedAuthor = await AuthorModel.findByIdAndUpdate(
+        args.id,
+        {
+          fullName: args.fullName,
+          email: args.email,
+          password: args.password,
+          role: args.role,
+          phone: args.phone,
+          accessTime: args.accessTime,
+          birthday: args.birthday,
+          accessToken: args.accessToken,
+          refreshToken: args.refreshToken,
+          bio: args.bio
+        },
+        { new: true}
+      );
+      return updatedAuthor;
+    },
+
+    deleteAuthor: async (parent, args) => {
+      const deletedAuthor = await AuthorModel.findByIdAndDelete(args.id);
+      return deletedAuthor;
+    }
   },
   // Resolver for relationship of book and author, return author by authorId in Book
   Book: {

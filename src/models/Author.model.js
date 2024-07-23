@@ -40,13 +40,6 @@ const authorSchema = new mongoose.Schema({
   bio: {
     type: String,
     required: true
-  },
-  books: {
-    type: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Book'
-    }],
-    default: []
   }
 });
 

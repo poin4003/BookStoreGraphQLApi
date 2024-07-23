@@ -38,9 +38,63 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addBook(title: String!, content: String!, createOn: String!, language: String!, numberOfPages: Int!, numberOfChapters: Int!, numberOfWords: Int!, view: Int, authorId: ID!): Book
-    addAuthor(fullName: String!, email: String!, password: String!, role: Int, phone: String!, accessTime: Int, birthday: String!, accessToken: String!, refreshToken: String!, bio: String!): Author
+    addBook(
+      title: String!,
+      content: String!,
+      createOn: String!,
+      language: String!,
+      numberOfPages: Int!,
+      numberOfChapters: Int!,
+      numberOfWords: Int!,
+      view: Int,
+      authorId: ID!
+    ): Book
+    
+    updateBook(
+      id: ID!,
+      title: String,
+      content: String,
+      createOn: String,
+      language: String,
+      numberOfPages: Int,
+      numberOfChapters: Int,
+      numberOfWords: Int,
+      view: Int,
+      authorId: ID
+    ): Book
+
+    deleteBook(id: ID!): Book
+    
+    addAuthor(
+      fullName: String!,
+      email: String!,
+      password: String!,
+      role: Int,
+      phone: String!,
+      accessTime: Int,
+      birthday: String!,
+      accessToken: String!,
+      refreshToken: String!,
+      bio: String!
+    ): Author
+
+    updateAuthor(
+      id: ID!,
+      fullName: String,
+      email: String,
+      password: String,
+      role: Int,
+      phone: String,
+      accessTime: Int,
+      birthday: String,
+      accessToken: String,
+      refreshToken: String,
+      bio: String
+    ): Author
+
+    deleteAuthor(id: ID!): Author
   }
+
 `;
 
 module.exports = typeDefs;
